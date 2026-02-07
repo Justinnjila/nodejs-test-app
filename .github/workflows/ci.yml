@@ -21,9 +21,11 @@ jobs:
       - name: install dependencies
         run: npm install
     
-      - name: buil d application
-        run: echo "building application"
-        run:echo "runing untit tests" 
-        -name:run  intergration tests
-        run: echo "runing intergration tests"
+      - name: build application
+        run: echo "Building application"
+      
+      - name: run  unit tests
+        run: echo "running unit tests"
         
+      - name: run itergration tests
+        run: echo "running integration tests"
