@@ -19,7 +19,7 @@ jobs:
           cache: "npm"
 
       - name: install dependencies
-        run: npm install
+        run: npm instal
     
       - name: build application
         run: echo "Building application"
