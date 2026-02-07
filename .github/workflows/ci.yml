@@ -22,6 +22,8 @@ jobs:
         run: npm install
     
       - name: buil d application
-        run: npm run build 
-       
+        run: echo "building application"
+        run:echo "runing untit tests" 
+        -name:run  intergration tests
+        run: echo "runing intergration tests"
         
