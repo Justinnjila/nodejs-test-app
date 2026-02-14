@@ -1,0 +1,22 @@
+name: nodejs CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  continuous_deployment:
+      runs-on: ubuntu-latest
+      steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: setup docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: build docker image
+        run: docker build -t user/app:latest .        
+      - name: tag Docker image
+        run: docker tag user/app:latest justodock/nodejs-test-app:latest
+   
