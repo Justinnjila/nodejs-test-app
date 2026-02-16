@@ -28,4 +28,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: push docker image to docker hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-test-app:latest
-        
+
+      - name: deploy to kubernetes cluster
+        run: echo "deploying to kubernetes cluster"
