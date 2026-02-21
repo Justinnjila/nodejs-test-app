@@ -7,8 +7,8 @@ on:
 
 jobs:
   continuous_integration:
-      runs-on: ubuntu-latest
-      steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: checkout repository
         uses: actions/checkout@v3
 
@@ -29,5 +29,4 @@ jobs:
         
       - name: run itergration tests
         run: echo "running integration tests"
-      - name: run e2e tests
         
