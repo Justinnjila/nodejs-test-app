@@ -29,6 +29,20 @@ jobs:
       - name: push docker image to docker hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-test-app:latest
 
-      - name: deploy to kubernetes cluster
-        run: echo "deploying to kubernetes cluster"
-        
+      - name: add ssh private key
+        run: |
+
+          mkdir -p ~/.ssh
+          echo  "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      - name: add SSH known hosts
+        run: ssh-keyscan -t rsa ${{{secrets.SSH_HOST }}} >> ~/.ssh/known_hosts 
+      - name: deploy to server
+        run: 
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            
+          EOF
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/nodejs-test-app:latest
+          sudo docker stop nodejs-test-app || true
+          sudo docker rm nodejs-test-app || trues
+          sudo docker run -d --name nodejs-test-app -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/nodejs-test-app:latest
