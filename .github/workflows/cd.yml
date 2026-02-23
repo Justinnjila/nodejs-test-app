@@ -3,7 +3,7 @@ name: nodejs CD
 on:
   push:
     branches:
-      - justo/login_page
+      - master
 
 jobs:
   continuous_deployment:
